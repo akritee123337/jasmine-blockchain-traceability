@@ -1,0 +1,232 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Jasmine Batch JAS-2026-001 — Traceability</title>
+        <style>
+            * { box-sizing: border-box; margin: 0; padding: 0; }
+            body {
+                font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+                background: #f7f5f0;
+                color: #2c2c2a;
+                padding: 24px 16px 60px;
+            }
+            .container { max-width: 640px; margin: 0 auto; }
+            .header {
+                background: linear-gradient(135deg, #6b8e5a, #4a6b3a);
+                color: white;
+                border-radius: 16px;
+                padding: 24px;
+                margin-bottom: 20px;
+            }
+            .header h1 { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+            .header .batch-id { font-size: 14px; opacity: 0.9; font-family: monospace; }
+            .badge {
+                display: inline-block;
+                margin-top: 12px;
+                padding: 6px 14px;
+                border-radius: 20px;
+                font-size: 13px;
+                font-weight: 600;
+            }
+            .badge-ok { background: #d4edda; color: #1e5a2b; }
+            .badge-bad { background: #f8d7da; color: #7a1f28; }
+            .timeline-item { display: flex; margin-bottom: 4px; }
+            .timeline-marker {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-right: 16px;
+            }
+            .dot {
+                width: 14px; height: 14px;
+                background: #4a6b3a;
+                border-radius: 50%;
+                border: 3px solid #d9e5d0;
+                flex-shrink: 0;
+                margin-top: 6px;
+            }
+            .connector {
+                width: 2px;
+                flex-grow: 1;
+                background: #d9d5c9;
+                margin-top: 4px;
+                min-height: 40px;
+            }
+            .timeline-content {
+                background: white;
+                border-radius: 12px;
+                padding: 16px;
+                margin-bottom: 20px;
+                flex: 1;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            }
+            .event-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                flex-wrap: wrap;
+                gap: 6px;
+                margin-bottom: 6px;
+            }
+            .event-title { font-size: 16px; font-weight: 600; color: #2c2c2a; }
+            .event-time { font-size: 12px; color: #888780; }
+            .event-role { font-size: 13px; color: #5f5e5a; margin-bottom: 10px; }
+            .event-details { border-top: 1px solid #f0eee6; padding-top: 10px; }
+            .detail-row {
+                display: flex;
+                justify-content: space-between;
+                font-size: 13px;
+                padding: 3px 0;
+                gap: 12px;
+            }
+            .detail-label { color: #888780; }
+            .detail-value { color: #2c2c2a; font-weight: 500; text-align: right; }
+            .event-hash {
+                font-size: 11px;
+                color: #b4b2a9;
+                font-family: monospace;
+                margin-top: 10px;
+                border-top: 1px solid #f0eee6;
+                padding-top: 8px;
+            }
+            .muted { color: #b4b2a9; font-size: 13px; }
+            .footer-note {
+                text-align: center;
+                font-size: 12px;
+                color: #888780;
+                margin-top: 20px;
+                padding: 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1>Jasmine Traceability Record</h1>
+                <div class="batch-id">Batch ID: JAS-2026-001</div>
+                <span class='badge badge-ok'>&#10003; Verified &ndash; No Tampering Detected</span>
+            </div>
+            
+        <div class="timeline-item">
+            <div class="timeline-marker">
+                <div class="dot"></div>
+                <div class='connector'></div>
+            </div>
+            <div class="timeline-content">
+                <div class="event-header">
+                    <span class="event-title">Cultivation</span>
+                    <span class="event-time">28 Jun 2026, 09:50 AM</span>
+                </div>
+                <div class="event-role">Recorded by: Farmer (farmer_102)</div>
+                <div class="event-details"><div class='detail-row'><span class='detail-label'>Farm Id</span><span class='detail-value'>FARM-12</span></div><div class='detail-row'><span class='detail-label'>Plot</span><span class='detail-value'>A3</span></div><div class='detail-row'><span class='detail-label'>Practice</span><span class='detail-value'>organic</span></div></div>
+                <div class="event-hash">Block hash: 367fcb1781e0abcd...</div>
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-marker">
+                <div class="dot"></div>
+                <div class='connector'></div>
+            </div>
+            <div class="timeline-content">
+                <div class="event-header">
+                    <span class="event-title">Disease Detection (AI)</span>
+                    <span class="event-time">09 Jul 2026, 11:36 PM</span>
+                </div>
+                <div class="event-role">Recorded by: AI System (ai_engine)</div>
+                <div class="event-details"><div class='detail-row'><span class='detail-label'>Disease</span><span class='detail-value'>Leaf Spot</span></div><div class='detail-row'><span class='detail-label'>Confidence</span><span class='detail-value'>0.94</span></div><div class='detail-row'><span class='detail-label'>Severity</span><span class='detail-value'>Medium</span></div></div>
+                <div class="event-hash">Block hash: 3d7cc9fee638ef56...</div>
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-marker">
+                <div class="dot"></div>
+                <div class='connector'></div>
+            </div>
+            <div class="timeline-content">
+                <div class="event-header">
+                    <span class="event-title">Treatment Applied</span>
+                    <span class="event-time">21 Jul 2026, 01:23 PM</span>
+                </div>
+                <div class="event-role">Recorded by: Agricultural Expert (expert_09)</div>
+                <div class="event-details"><div class='detail-row'><span class='detail-label'>Treatment</span><span class='detail-value'>Neem oil spray</span></div><div class='detail-row'><span class='detail-label'>Notes</span><span class='detail-value'>2 rounds, 5 days apart</span></div></div>
+                <div class="event-hash">Block hash: 471ad1d30a4c9988...</div>
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-marker">
+                <div class="dot"></div>
+                <div class='connector'></div>
+            </div>
+            <div class="timeline-content">
+                <div class="event-header">
+                    <span class="event-title">Harvest</span>
+                    <span class="event-time">02 Aug 2026, 03:10 AM</span>
+                </div>
+                <div class="event-role">Recorded by: Farmer (farmer_102)</div>
+                <div class="event-details"><div class='detail-row'><span class='detail-label'>Quantity Kg</span><span class='detail-value'>42.5</span></div><div class='detail-row'><span class='detail-label'>Grade</span><span class='detail-value'>A</span></div></div>
+                <div class="event-hash">Block hash: 68274e2428ab7766...</div>
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-marker">
+                <div class="dot"></div>
+                <div class='connector'></div>
+            </div>
+            <div class="timeline-content">
+                <div class="event-header">
+                    <span class="event-title">Collected by Distributor</span>
+                    <span class="event-time">13 Aug 2026, 04:56 PM</span>
+                </div>
+                <div class="event-role">Recorded by: Distributor (dist_44)</div>
+                <div class="event-details"><div class='detail-row'><span class='detail-label'>Vehicle</span><span class='detail-value'>TN-09-AZ-1234</span></div></div>
+                <div class="event-hash">Block hash: c5c2923111639922...</div>
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-marker">
+                <div class="dot"></div>
+                <div class='connector'></div>
+            </div>
+            <div class="timeline-content">
+                <div class="event-header">
+                    <span class="event-title">Transportation</span>
+                    <span class="event-time">25 Aug 2026, 06:43 AM</span>
+                </div>
+                <div class="event-role">Recorded by: Distributor (dist_44)</div>
+                <div class="event-details"><div class='detail-row'><span class='detail-label'>Route</span><span class='detail-value'>Farm -> Warehouse -> Retail</span></div><div class='detail-row'><span class='detail-label'>Temp C</span><span class='detail-value'>18.2</span></div></div>
+                <div class="event-hash">Block hash: 9953c22a2d598877...</div>
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-marker">
+                <div class="dot"></div>
+                
+            </div>
+            <div class="timeline-content">
+                <div class="event-header">
+                    <span class="event-title">Sold to Retailer/Customer</span>
+                    <span class="event-time">04 Sep 2026, 04:43 PM</span>
+                </div>
+                <div class="event-role">Recorded by: Seller (seller_08)</div>
+                <div class="event-details"><div class='detail-row'><span class='detail-label'>Price Per Kg</span><span class='detail-value'>320</span></div><div class='detail-row'><span class='detail-label'>Buyer</span><span class='detail-value'>retail_shop_19</span></div></div>
+                <div class="event-hash">Block hash: 77a0d6ef36e9aabb...</div>
+            </div>
+        </div>
+        
+            <div class="footer-note">
+                This record is secured with blockchain-based hash-chaining.
+                Every event above is cryptographically linked and tamper-evident.
+            </div>
+        </div>
+    </body>
+    </html>
+    

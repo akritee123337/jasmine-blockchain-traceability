@@ -11,7 +11,7 @@ from app.qr_generator import generate_qr_for_batch
 
 store = TraceabilityStore(mongo_uri="mongodb://localhost:27017", db_name="jasmine_db")
 
-batch_id = os.getenv("BATCH_ID", "JAS-2026-002")
+batch_id = os.getenv("BATCH_ID", "JAS-2026-003")
 
 # (event_type, role, actor_id, actor_name, data)
 events = [

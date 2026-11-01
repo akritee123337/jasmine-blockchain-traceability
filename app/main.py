@@ -21,7 +21,11 @@ from app.qr_generator import generate_qr_for_batch
 app = FastAPI(title="Jasmine Blockchain Traceability API")
 
 # Change the URI if your MongoDB is hosted elsewhere (e.g. Atlas connection string)
-store = TraceabilityStore(mongo_uri="mongodb://localhost:27017", db_name="jasmine_db")
+
+store = TraceabilityStore(
+    mongo_uri="mongodb://[::1]:27017",
+    db_name="jasmine_db"
+)
 
 class EventIn(BaseModel):
     batch_id: str

@@ -8,7 +8,7 @@ from app.blockchain import compute_hash
 from app.fabric_gateway import FabricGatewayClient
 
 class TraceabilityStore:
-    def __init__(self, mongo_uri: str = "mongodb://localhost:27017", db_name: str = "jasmine_db"):
+    def __init__(self, mongo_uri: str = "mongodb://[::1]:27017", db_name: str = "jasmine_db"):
         self.client = MongoClient(mongo_uri)
         self.db = self.client[db_name]
         self.off_chain: Collection = self.db["off_chain_records"]
@@ -16,8 +16,12 @@ class TraceabilityStore:
 
     # -------------------- writing --------------------
     def save_off_chain_record(self, record: Dict[str, Any]) -> str:
-        """Insert the FULL detailed record into MongoDB (as you already do)."""
-        result = self.off_chain.insert_one(record)
+        """Insert the FULL detailed record into MongoDB.
+        
+        Note: a copy is used so PyMongo's in-place _id injection does not
+        mutate the caller's dict (which would silently corrupt hash checks).
+        """
+        result = self.off_chain.insert_one(dict(record))
         return str(result.inserted_id)
 
     def append_block(self, batch_id: str, event_type: str, role: str,
@@ -77,10 +81,20 @@ class TraceabilityStore:
                 )
             else:
                 data_ok = False
+
+            # Re-read block_hash and chain_link validity from Fabric's report
+            block_hash_ok = result.get("block_hash_valid", True)
+            chain_link_ok = result.get("chain_link_valid", True)
+
             result["off_chain_data_valid"] = data_ok
-            if not data_ok:
-                result["status"] = "TAMPERED"
-        report["valid"] = all(block["status"] == "OK" and block["off_chain_data_valid"] for block in report["blocks"])
+            # Always recompute status from ALL three checks; the Fabric chaincode
+            # cannot reach MongoDB so its off-chain verdict must be overridden here.
+            result["status"] = "OK" if (block_hash_ok and chain_link_ok and data_ok) else "TAMPERED"
+
+        report["valid"] = all(
+            b["status"] == "OK" and b["off_chain_data_valid"]
+            for b in report["blocks"]
+        )
         return report
 
     @staticmethod
